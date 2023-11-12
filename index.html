@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Simple Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Simple Website</title>
-</head>
-<body>
-    <h1>Hello, World!</h1>
-    <p>This is a simple website hosted on GitHub Pages.</p>
 
-    <!-- Add a link or button to open the Google Form -->
-    <a href="https://forms.gle/rZTdUSQHjzoFRuj6A" target="_blank">Submit Information</a>
-</body>
-</html>
+  <h1>Contact Form</h1>
+
+  <form id="myForm">
+    <label>Email:</label>
+    <input type="email" name="user_email">
+    
+    <label>Message:</label>
+    <textarea name="message"></textarea>
+    
+    <button type="button" onclick="sendEmail()">Send</button>
+  </form>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("user_your_emailjs_user_id");
+
+    function sendEmail() {
+      emailjs.sendForm("mailgun", "template_your_template_id", "#myForm")
+        .then(function(response) {
+          console.log("Email sent successfully", response);
+          alert("Email sent successfully!");
+        }, function(error) {
+          console.log("Email failed to send", error);
+          alert("Email failed to send. Please try again later.");
+        });
+    }
+  </script>
 
 </body>
 </html>
